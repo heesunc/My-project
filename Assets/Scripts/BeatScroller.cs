@@ -17,10 +17,10 @@ public class BeatScroller : MonoBehaviour
         if(!hasStarted)
         {
             // 아무 키나 누르면 true되도록
-            if(Input.anyKeyDown)
+            /*if(Input.anyKeyDown)
             {
                 hasStarted = true;
-            }            
+            }  */          
         }
         // 화살표가 y축으로 이동
         else
