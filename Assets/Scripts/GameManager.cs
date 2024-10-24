@@ -11,8 +11,11 @@ public class GameManager : MonoBehaviour
     public int currentScore; // 점수 합계
     public int scorePerNote = 100; // 노트 점수
 
-    public int currentMultiplier;
-    public int multiplierTracker;
+    public int scorePerGoodNote = 125;
+    public int scorePerPerfectNote = 150;
+
+    public int currentMultiplier; // 점수 배수
+    public int multiplierTracker; // 점수 배수 관리
     public int[] multipleierThresholds;
 
     public Text scoreText; // UI에 띄워줄 텍스트를 위함
@@ -60,11 +63,27 @@ public class GameManager : MonoBehaviour
         // 콤보 텍스트 UI에 표시
         multiText.text = "Multiplier: x" + currentMultiplier;
 
-        currentScore += scorePerNote * currentMultiplier; // 점수 = 기본 값 * 콤보 값
+        // currentScore += scorePerNote * currentMultiplier; // 점수 = 기본 값 * 콤보 값
         scoreText.text = "Score: " + currentScore; // 점수 텍스트 UI에 표시
-
     }
 
+    public void NormalHit()
+    {
+        currentScore += scorePerNote * currentMultiplier;
+        NoteHit();
+    }
+
+    public void GoodHit()
+    {
+        currentScore += scorePerGoodNote * currentMultiplier;
+        NoteHit();
+    }
+
+    public void PerfectHit()
+    {
+        currentScore += scorePerPerfectNote * currentMultiplier;
+        NoteHit();
+    }
     public void NoteMissed()
     {
         Debug.Log("Missed Note");

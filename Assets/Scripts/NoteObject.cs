@@ -5,6 +5,9 @@ public class NoteObject : MonoBehaviour
     public bool canBePressed;
     public KeyCode keyToPress;
 
+    public GameObject hitEffect, goodEffect, perfectEffect, MissEffect;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,7 +22,27 @@ public class NoteObject : MonoBehaviour
             if(canBePressed)
             {
                 gameObject.SetActive(false);
-                GameManager.instance.NoteHit();
+                //GameManager.instance.NoteHit();
+
+                // 버튼 안에 있는 콜라이더의 위치와 얼마나 떨어져 있느냐로 계산
+                if(Mathf.Abs(transform.position.y) > 0.25f)
+                {
+                    Debug.Log("Hit");
+                    GameManager.instance.NormalHit();
+                    Instantiate(hitEffect, transform.position, hitEffect.transform.rotation); // 기존 저장되어 있는 것
+                }
+                else if(Mathf.Abs(transform.position.y) > 0.05f)
+                {
+                    Debug.Log("Good Hit");
+                    GameManager.instance.GoodHit();
+                    Instantiate(goodEffect, transform.position, goodEffect.transform.rotation);
+                }
+                else
+                {
+                    Debug.Log("Perfect Hit");
+                    GameManager.instance.PerfectHit();
+                    Instantiate(perfectEffect, transform.position, perfectEffect.transform.rotation);
+                }
             }
         }
     }
@@ -41,6 +64,7 @@ public class NoteObject : MonoBehaviour
             {
                 canBePressed = false;
                 GameManager.instance.NoteMissed();
+                Instantiate(MissEffect, transform.position, MissEffect.transform.rotation);
             }
         }
     }
