@@ -2092,6 +2092,13 @@ MonoBehaviour:
   music: {fileID: 212757590}
   startPlaying: 0
   beatsroller: {fileID: 1492522724}
+  currentScore: 0
+  scorePerNote: 100
+  currentMultiplier: 0
+  multiplierTracker: 0
+  multipleierThresholds: 040000000800000010000000
+  scoreText: {fileID: 1791990394}
+  multiText: {fileID: 2046179001}
 --- !u!4 &794133397
 Transform:
   m_ObjectHideFlags: 0
@@ -2771,7 +2778,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1605572179
 MonoBehaviour:
   m_ObjectHideFlags: 0
